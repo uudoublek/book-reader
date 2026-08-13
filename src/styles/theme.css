@@ -1,0 +1,41 @@
+/* theme.css — 明暗主题变量 */
+
+:root {
+  color-scheme: light;
+  --bg: #f7f6f3;
+  --fg: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e2dc;
+  --card: #ffffff;
+  --sidebar-bg: #faf9f6;
+  --header-bg: rgba(247, 246, 243, 0.82);
+  --input-bg: #ffffff;
+  --chip-bg: #eeebe4;
+  --quote-bg: #f3f0ea;
+  --code-bg: #f0ede6;
+  --th-bg: #f3f0ea;
+  --accent: #4f46e5;
+  --accent-2: #7c3aed;
+  --accent-soft: rgba(79, 70, 229, 0.10);
+  --mark-bg: #fde68a;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0f1115;
+  --fg: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #272a31;
+  --card: #171a20;
+  --sidebar-bg: #12151b;
+  --header-bg: rgba(15, 17, 21, 0.82);
+  --input-bg: #1e2229;
+  --chip-bg: #23272f;
+  --quote-bg: #1b1f26;
+  --code-bg: #1e2229;
+  --th-bg: #1e2229;
+  --accent: #818cf8;
+  --accent-2: #a78bfa;
+  --accent-soft: rgba(129, 140, 248, 0.14);
+  --mark-bg: #7c5f12;
+}

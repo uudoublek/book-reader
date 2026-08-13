@@ -1,0 +1,374 @@
+/* book.css — 阅读视图：侧边栏 + 正文 + 页内目录 */
+
+.book-view {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  min-height: 70vh;
+}
+
+/* ------------------------------------------------------------------ 侧边栏 */
+
+.sidebar-wrap {
+  border-right: 1px solid var(--border);
+  background: var(--sidebar-bg);
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  position: sticky;
+  top: 72px;
+  align-self: start;
+}
+
+.sidebar {
+  padding: 20px 16px;
+}
+
+.sidebar-header {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-back {
+  display: inline-block;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.sidebar-book-title {
+  font-size: 18px;
+  margin: 0 0 4px;
+  line-height: 1.4;
+}
+
+.sidebar-book-author {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.sidebar-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 12px 0 4px;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: var(--fg);
+  border-radius: 6px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.sidebar-link:hover {
+  background: var(--accent-soft);
+}
+
+.sidebar-link.is-active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------ 阅读区 */
+
+.reading {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.reader-toolbar {
+  display: none;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 56px;
+  background: var(--card);
+  z-index: 40;
+}
+
+.sidebar-toggle {
+  padding: 6px 14px;
+  font-size: 14px;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--fg);
+}
+
+.reading-inner {
+  min-width: 0;
+  padding: 32px 40px 56px;
+  max-width: 860px;
+}
+
+/* ------------------------------------------------------------------ 正文排版 */
+
+.reader-title {
+  font-size: 28px;
+  line-height: 1.35;
+  margin: 0 0 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.markdown {
+  font-size: 16px;
+  line-height: 1.85;
+  overflow-wrap: break-word;
+}
+
+.markdown h1 {
+  font-size: 26px;
+  margin: 1.4em 0 0.6em;
+}
+
+.markdown h2 {
+  font-size: 21px;
+  margin: 1.6em 0 0.5em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.markdown h3 {
+  font-size: 17px;
+  margin: 1.4em 0 0.4em;
+}
+
+.markdown p {
+  margin: 0.9em 0;
+}
+
+.markdown a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: 1.4em;
+  margin: 0.8em 0;
+}
+
+.markdown li {
+  margin: 0.25em 0;
+}
+
+.markdown blockquote {
+  margin: 1em 0;
+  padding: 8px 16px;
+  border-left: 4px solid var(--accent);
+  background: var(--quote-bg);
+  border-radius: 0 8px 8px 0;
+  color: var(--muted);
+}
+
+.markdown blockquote p {
+  margin: 0.4em 0;
+}
+
+.markdown code {
+  font-family: 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.markdown pre {
+  background: var(--code-bg);
+  padding: 14px 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.markdown pre code {
+  background: none;
+  padding: 0;
+}
+
+.markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2em 0;
+  font-size: 14px;
+  display: block;
+  overflow-x: auto;
+}
+
+.markdown th,
+.markdown td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.markdown th {
+  background: var(--th-bg);
+  font-weight: 600;
+}
+
+.markdown hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.6em 0;
+}
+
+.markdown img {
+  max-width: 100%;
+}
+
+/* ------------------------------------------------------------------ 上下篇 */
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.pager-link {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--fg);
+  background: var(--input-bg);
+  overflow-wrap: break-word;
+}
+
+.pager-prev {
+  text-align: left;
+}
+
+.pager-next {
+  text-align: right;
+}
+
+.pager-link:not(.is-disabled):hover {
+  border-color: var(--accent);
+}
+
+.pager-link.is-disabled {
+  color: var(--muted);
+  cursor: default;
+}
+
+/* ------------------------------------------------------------------ 页内目录 */
+
+.toc-pane {
+  border-left: 1px solid var(--border);
+  padding: 24px 18px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  position: sticky;
+  top: 72px;
+  align-self: start;
+  background: var(--sidebar-bg);
+}
+
+.toc-title {
+  font-size: 13px;
+  margin: 0 0 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+
+.toc-item {
+  margin: 0;
+}
+
+.toc-link {
+  display: block;
+  padding: 4px 8px;
+  color: var(--muted);
+  border-left: 2px solid transparent;
+  line-height: 1.4;
+}
+
+.toc-lvl-3 .toc-link {
+  padding-left: 20px;
+}
+
+.toc-link:hover {
+  color: var(--fg);
+  border-left-color: var(--accent);
+}
+
+/* ------------------------------------------------------------------ 响应式 */
+
+@media (min-width: 1100px) {
+  .reading {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .toc-pane {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .book-view {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-wrap {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-height: none;
+    transform: translateX(-100%);
+    transition: transform 0.22s ease;
+    z-index: 45;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+  }
+
+  .book-view.sidebar-open .sidebar-wrap {
+    transform: translateX(0);
+  }
+
+  .reader-toolbar {
+    display: block;
+  }
+
+  .reading-inner {
+    padding: 20px 18px 48px;
+  }
+
+  .reader-title {
+    font-size: 23px;
+  }
+}

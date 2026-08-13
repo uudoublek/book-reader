@@ -1,0 +1,58 @@
+# 构建并发布到 GitHub Pages
+#
+# 说明：本工作流假设仓库根即 book-reader 目录（package.json / Makefile / src/ 都在根下）。
+# 书籍内容来自以下任一来源（由 scripts/build-content.mjs 按优先级自动探测）：
+#   - content/skills/（运行 `make sync` 后提交到仓库的副本，独立发布推荐）
+#   - .reasonix/skills/（若仓库同时包含该目录）
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: make build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,33 @@
+# === 依赖 ===
+node_modules/
+package-lock.json.bak
+
+# === 构建产物 ===
+dist/
+dist-ssr/
+*.local
+
+# === 构建时生成的数据（scripts/build-content.mjs 产出）===
+src/content/books.json
+
+# 注：content/skills/ 是 make sync 从上游拷贝的内容副本，**需要提交**，
+# 以便独立仓库在 CI 中构建（见 README「发布到 GitHub Pages」）。
+
+# === 日志与缓存 ===
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
+
+# === 编辑器 / 系统 ===
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

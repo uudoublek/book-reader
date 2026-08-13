@@ -1,0 +1,22 @@
+{
+  "name": "book-reader",
+  "version": "1.0.0",
+  "description": "把 .reasonix/skills 下的结构化书籍编译为可在线阅读的 HTML 电子书站点",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "content": "node scripts/build-content.mjs",
+    "dev": "npm run content && vite",
+    "build": "npm run content && vite build",
+    "dev:vite": "vite",
+    "build:vite": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
