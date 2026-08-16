@@ -21,20 +21,23 @@
 └── patterns.md       # 思维模型
 ```
 
-已收录 10 本：
+已收录 13 本：
 
 | 书名 | slug |
 | --- | --- |
 | 货币战争（宋鸿兵四卷合集） | `currency-wars` |
 | 原则：应对变化中的世界秩序 | `dalio-changing-world-order` |
+| 小逻辑（黑格尔） | `hegel-logic` |
 | 易经（周易） | `i-ching` |
 | 毛泽东选集（毛泽东） | `mao-selected-works` |
+| 明朝那些事儿（当年明月） | `ming-dynasty-events` |
 | 中国历代政治得失（钱穆） | `qianmu-political-systems` |
 | 人类简史（赫拉利） | `sapiens` |
 | 史记（司马迁） | `shiji` |
 | 道德经（老子） | `tao-te-ching` |
 | 论语（孔子及弟子） | `the-analects` |
 | 理想国（柏拉图） | `the-republic` |
+| 祥瑞：王莽和他的时代（张向荣） | `xiangrui-wang-mang` |
 
 ## 构建
 
