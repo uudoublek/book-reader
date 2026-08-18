@@ -21,14 +21,16 @@
 └── patterns.md       # 思维模型
 ```
 
-已收录 13 本：
+已收录 15 本：
 
 | 书名 | slug |
 | --- | --- |
+| 中华人民共和国民法典 | `civil-code` |
 | 货币战争（宋鸿兵四卷合集） | `currency-wars` |
 | 原则：应对变化中的世界秩序 | `dalio-changing-world-order` |
 | 小逻辑（黑格尔） | `hegel-logic` |
 | 易经（周易） | `i-ching` |
+| 罗翔说刑法（罗翔） | `luoxiang-criminal-law` |
 | 毛泽东选集（毛泽东） | `mao-selected-works` |
 | 明朝那些事儿（当年明月） | `ming-dynasty-events` |
 | 中国历代政治得失（钱穆） | `qianmu-political-systems` |
