@@ -192,6 +192,94 @@ mark {
   margin: 0;
 }
 
+.shelf {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ------------------------------------------------------------------ 分类分组 */
+
+.shelf-toolbar {
+  display: flex;
+  gap: 10px;
+  margin: 4px 0 18px;
+}
+
+.btn-ghost {
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.btn-ghost:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.shelf-group {
+  margin-bottom: 10px;
+}
+
+.shelf-group-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 6px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--fg);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  transition: color 0.15s;
+}
+
+.shelf-group-header:hover {
+  color: var(--accent);
+}
+
+.shelf-group-icon {
+  font-size: 17px;
+}
+
+.shelf-group-label {
+  flex: 0 0 auto;
+}
+
+.shelf-group-count {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+  background: var(--chip-bg);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.shelf-group-chevron {
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform 0.18s ease;
+}
+
+.shelf-group.is-collapsed .shelf-group-chevron {
+  transform: rotate(-90deg);
+}
+
+.shelf-group-body {
+  padding-top: 18px;
+}
+
+.shelf-group.is-collapsed .shelf-group-body {
+  display: none;
+}
+
 .book-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

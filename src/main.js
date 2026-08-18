@@ -41,7 +41,7 @@ app.append(header, main);
 function renderHome() {
   document.title = '书库 · Book Reader';
   main.innerHTML = '';
-  main.append(renderBookList(booksData.books));
+  main.append(renderBookList(booksData.books, booksData.categories || []));
 }
 
 function renderBook(route) {

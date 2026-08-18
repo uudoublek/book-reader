@@ -25,6 +25,31 @@ const OUT_DIR = join(PROJECT_ROOT, 'src', 'content');
 const OUT_FILE = join(OUT_DIR, 'books.json');
 
 /**
+ * 书籍分类（slug → 分类名）。新增书籍时在此登记，未登记的书归入「其他」。
+ * 分类的展示顺序由 CATEGORY_ORDER 决定。
+ */
+const BOOK_CATEGORIES = {
+  'i-ching': '哲学',
+  'tao-te-ching': '哲学',
+  'the-analects': '哲学',
+  'the-republic': '哲学',
+  'hegel-logic': '哲学',
+  'shiji': '历史',
+  'ming-dynasty-events': '历史',
+  'xiangrui-wang-mang': '历史',
+  'sapiens': '历史',
+  'mao-selected-works': '政治与制度',
+  'qianmu-political-systems': '政治与制度',
+  'currency-wars': '经济与金融',
+  'dalio-changing-world-order': '经济与金融',
+  'civil-code': '法律',
+  'luoxiang-criminal-law': '法律',
+};
+
+const CATEGORY_ORDER = ['哲学', '历史', '政治与制度', '经济与金融', '法律'];
+const OTHER_CATEGORY = '其他';
+
+/**
  * 解析书籍来源目录，按优先级尝试：
  *   1. SKILLS_DIR 环境变量（显式指定）
  *   2. ../.reasonix/skills（工作区根下的 skill 目录）
@@ -203,6 +228,7 @@ function readSkillDir(dir) {
     shortTitle,
     author,
     description: data.description || '',
+    category: BOOK_CATEGORIES[slug] || OTHER_CATEGORY,
     sections,
     fileToSectionId,
   };
@@ -245,18 +271,36 @@ function main() {
   const books = dirs.map(readSkillDir).map(rewriteLinks);
   books.sort((a, b) => a.slug.localeCompare(b.slug));
 
+  // 分类统计：按 CATEGORY_ORDER 排布，未登记的书归入「其他」并排在最后
+  const byCategory = new Map();
+  for (const b of books) {
+    if (!byCategory.has(b.category)) byCategory.set(b.category, []);
+    byCategory.get(b.category).push(b);
+  }
+  const categories = CATEGORY_ORDER.filter((c) => byCategory.has(c)).map((name) => ({
+    name,
+    count: byCategory.get(name).length,
+  }));
+  if (byCategory.has(OTHER_CATEGORY)) {
+    categories.push({ name: OTHER_CATEGORY, count: byCategory.get(OTHER_CATEGORY).length });
+  }
+
   mkdirSync(OUT_DIR, { recursive: true });
   writeFileSync(
     OUT_FILE,
-    JSON.stringify({ generatedAt: new Date().toISOString(), source: skillsDir, books }, null, 2),
+    JSON.stringify(
+      { generatedAt: new Date().toISOString(), source: skillsDir, categories, books },
+      null,
+      2,
+    ),
     'utf8',
   );
 
   const totalSections = books.reduce((n, b) => n + b.sections.length, 0);
   console.log(`✅ 已生成 ${OUT_FILE}`);
-  console.log(`   书籍 ${books.length} 本，章节 ${totalSections} 个`);
-  for (const b of books) {
-    console.log(`   · ${b.shortTitle}（${b.slug}，${b.sections.length} 节）`);
+  console.log(`   书籍 ${books.length} 本，章节 ${totalSections} 个，分类 ${categories.length} 个`);
+  for (const c of categories) {
+    console.log(`   [${c.name}] ${c.count} 本`);
   }
 }
 
